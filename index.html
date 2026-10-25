@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secret Love Note 💕</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Fredoka, Quicksand, Dancing Script, Playfair Display & Pacifico -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fredoka:wght@400;600;700&family=Pacifico&family=Playfair+Display:ital,wght@0,600;1,400;1,700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Fredoka', 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ffd1dc 0%, #ffe6ea 50%, #fbcfe8 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    .font-romantic {
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .font-pacifico {
+      font-family: 'Pacifico', cursive;
+    }
+
+    .font-serif-elegant {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* Floating Heart & Rose Petal Animations */
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(100vh) scale(0.5) rotate(0deg);
+        opacity: 0.85;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .floating-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      animation: floatHeart 6s linear infinite;
+    }
+
+    /* Giant Glowing Neon Animated Text for "I LOVE YOU" */
+    @keyframes superLoveGlow {
+      0%, 100% {
+        text-shadow: 0 0 15px #f43f5e, 0 0 35px #f472b6, 0 0 55px #fda4af, 0 0 75px #e11d48;
+        transform: scale(1);
+      }
+      50% {
+        text-shadow: 0 0 30px #e11d48, 0 0 60px #f43f5e, 0 0 90px #f472b6, 0 0 120px #fb7185;
+        transform: scale(1.05);
+      }
+    }
+
+    .super-love-glow {
+      animation: superLoveGlow 2s infinite ease-in-out;
+    }
+
+    /* Glowing Interactive Heart Button */
+    @keyframes heartGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.7), 0 0 35px rgba(244, 114, 182, 0.4); }
+      50% { box-shadow: 0 0 30px rgba(244, 114, 182, 1), 0 0 50px rgba(244, 114, 182, 0.6); }
+    }
+
+    .glow-heart-btn {
+      animation: heartGlow 2.5s infinite ease-in-out;
+    }
+
+    /* Sparkle Particle Pulse */
+    @keyframes sparkleRotate {
+      0% { transform: rotate(0deg) scale(0.8); opacity: 0.7; }
+      50% { transform: rotate(180deg) scale(1.3); opacity: 1; }
+      100% { transform: rotate(360deg) scale(0.8); opacity: 0.7; }
+    }
+
+    .sparkle-icon {
+      animation: sparkleRotate 3s infinite linear;
+    }
+
+    /* Soft Glassmorphism */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 3px solid rgba(255, 182, 193, 0.75);
+      box-shadow: 0 20px 45px rgba(255, 154, 162, 0.28), inset 0 0 15px rgba(255, 255, 255, 0.9);
+    }
+
+    /* Cute Pin Pad Button Styling */
+    .pin-btn {
+      background: linear-gradient(180deg, #ffffff 0%, #fff0f3 100%);
+      border: 2px solid #fbcfe8;
+      box-shadow: 0 6px 0 #f472b6, 0 8px 15px rgba(244, 114, 182, 0.2);
+      transition: all 0.1s ease;
+      -webkit-tap-highlight-color: none;
+    }
+
+    .pin-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #f472b6, 0 3px 6px rgba(244, 114, 182, 0.2);
+    }
+
+    /* Action Key (Clear/Delete) */
+    .pin-btn-action {
+      background: linear-gradient(180deg, #ffe4e6 0%, #fecdd3 100%);
+      border: 2px solid #fda4af;
+      box-shadow: 0 6px 0 #f43f5e, 0 8px 15px rgba(244, 63, 94, 0.15);
+      -webkit-tap-highlight-color: none;
+    }
+
+    .pin-btn-action:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #f43f5e, 0 3px 6px rgba(244, 63, 94, 0.15);
+    }
+
+    /* Shake Animation for Wrong Passcode */
+    @keyframes gentleShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-12px) rotate(-3deg); }
+      40% { transform: translateX(12px) rotate(3deg); }
+      60% { transform: translateX(-8px) rotate(-1.5deg); }
+      80% { transform: translateX(8px) rotate(1.5deg); }
+    }
+
+    .shake-animation {
+      animation: gentleShake 0.4s ease-in-out;
+    }
+
+    /* Pulse for Dots */
+    @keyframes dotPop {
+      0% { transform: scale(0.6); opacity: 0.3; }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .dot-filled {
+      animation: dotPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #ffe4e6;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #f472b6;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center p-4 relative min-h-screen">
+
+  <!-- Background Floating Hearts Container -->
+  <div id="heartsContainer" class="fixed inset-0 pointer-events-none z-0"></div>
+
+  <!-- Audio Controls Bar -->
+  <div class="fixed top-4 left-4 right-4 z-40 max-w-sm mx-auto flex justify-between items-center pointer-events-auto">
+    <div class="flex space-x-2">
+      <button id="bgmToggle" onclick="toggleBGM()" class="p-2.5 rounded-full bg-white/80 hover:bg-white text-pink-500 shadow-md transition-all active:scale-95 border border-pink-200" title="Toggle Soft Background Melody">
+        <i data-lucide="music" class="w-5 h-5"></i>
+      </button>
+      <audio src="Bela Bose (PenduJatt.dev).mp3" loop id = "audio"></audio>
+      <button id="sfxToggle" onclick="toggleSFX()" class="p-2.5 rounded-full bg-white/80 hover:bg-white text-pink-500 shadow-md transition-all active:scale-95 border border-pink-200" title="Toggle Sound Effects">
+        <i data-lucide="volume-2" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- PAGE 1: PASSCODE INPUT SCREEN -->
+  <main id="passcodeScreen" class="w-full max-w-sm z-10 relative mt-10">
+
+    <!-- Passcode Card -->
+    <div id="passcodeCard" class="glass-card rounded-3xl p-6 text-center relative overflow-hidden transition-all duration-300">
+      
+      <!-- Top Cute Badge -->
+      <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-pink-100 text-pink-600 font-bold text-xs mb-3 border border-pink-300 shadow-sm">
+        <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+        <span>TOP SECRET NOTE</span>
+      </div>
+
+      <!-- Heading -->
+      <h1 id="passcodeHeading" class="text-2xl font-bold text-pink-700 mb-1">Hey Sweetie! 💕</h1>
+      <p id="passcodeSubtext" class="text-xs text-pink-500 font-medium mb-6">Enter the secret code to open your message</p>
+
+      <!-- Secret Code Dots Display -->
+      <div id="pinDots" class="flex justify-center items-center space-x-4 mb-6 py-2">
+        <div class="w-5 h-5 rounded-full border-2 border-pink-300 bg-white/60 transition-all"></div>
+        <div class="w-5 h-5 rounded-full border-2 border-pink-300 bg-white/60 transition-all"></div>
+        <div class="w-5 h-5 rounded-full border-2 border-pink-300 bg-white/60 transition-all"></div>
+        <div class="w-5 h-5 rounded-full border-2 border-pink-300 bg-white/60 transition-all"></div>
+        <div class="w-5 h-5 rounded-full border-2 border-pink-300 bg-white/60 transition-all"></div>
+        <div class="w-5 h-5 rounded-full border-2 border-pink-300 bg-white/60 transition-all"></div>
+        <div class="w-5 h-5 rounded-full border-2 border-pink-300 bg-white/60 transition-all"></div>
+      </div>
+
+      <!-- Feedback Message Display -->
+      <div id="feedbackText" class="h-6 text-xs font-bold text-pink-600 mb-4 transition-all opacity-0 flex items-center justify-center gap-1">
+        <span>Oopsie, try again! 💗</span>
+      </div>
+
+      <!-- 9 Number + 0 Pin Pad Layout -->
+      <div class="grid grid-cols-3 gap-3.5 mb-4 px-1">
+        <button onclick="pressPin('1')" class="pin-btn h-14 rounded-2xl text-pink-600 text-2xl font-bold flex items-center justify-center">1</button>
+        <button onclick="pressPin('2')" class="pin-btn h-14 rounded-2xl text-pink-600 text-2xl font-bold flex items-center justify-center">2</button>
+        <button onclick="pressPin('3')" class="pin-btn h-14 rounded-2xl text-pink-600 text-2xl font-bold flex items-center justify-center">3</button>
+        
+        <button onclick="pressPin('4')" class="pin-btn h-14 rounded-2xl text-pink-600 text-2xl font-bold flex items-center justify-center">4</button>
+        <button onclick="pressPin('5')" class="pin-btn h-14 rounded-2xl text-pink-600 text-2xl font-bold flex items-center justify-center">5</button>
+        <button onclick="pressPin('6')" class="pin-btn h-14 rounded-2xl text-pink-600 text-2xl font-bold flex items-center justify-center">6</button>
+        
+        <button onclick="pressPin('7')" class="pin-btn h-14 rounded-2xl text-pink-600 text-2xl font-bold flex items-center justify-center">7</button>
+        <button onclick="pressPin('8')" class="pin-btn h-14 rounded-2xl text-pink-600 text-2xl font-bold flex items-center justify-center">8</button>
+        <button onclick="pressPin('9')" class="pin-btn h-14 rounded-2xl text-pink-600 text-2xl font-bold flex items-center justify-center">9</button>
+        
+        <button onclick="clearPin()" class="pin-btn-action h-14 rounded-2xl text-rose-500 font-bold text-xs flex flex-col items-center justify-center gap-0.5">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+          <span>Clear</span>
+        </button>
+        <button onclick="pressPin('0')" class="pin-btn h-14 rounded-2xl text-pink-600 text-2xl font-bold flex items-center justify-center">0</button>
+        <button onclick="backspacePin()" class="pin-btn-action h-14 rounded-2xl text-rose-500 font-bold text-xs flex flex-col items-center justify-center gap-0.5">
+          <i data-lucide="delete" class="w-4 h-4"></i>
+          <span>Erase</span>
+        </button>
+      </div>
+
+      <!-- Hint Footer Button -->
+      <button onclick="showHint()" class="text-xs text-pink-400 hover:text-pink-600 underline transition-colors font-medium">
+        Need a hint? 💡
+      </button>
+
+    </div>
+  </main>
+
+  <!-- PAGE 2: UNLOCKED MAIN HUB (Contains Tabs & Big Button) -->
+  <main id="mainHubScreen" class="w-full max-w-lg z-10 relative hidden mt-10 my-6">
+    <div class="glass-card rounded-3xl p-5 sm:p-6 text-center relative shadow-2xl flex flex-col">
+      
+      <!-- Hub Header -->
+      <div class="text-center mb-4 relative">
+        <span class="text-4xl inline-block animate-bounce mb-1">💌</span>
+        <h2 id="hubGreeting" class="text-2xl font-bold text-pink-700">Welcome, My Love! 💕</h2>
+        <p class="text-xs text-pink-500 font-medium">You unlocked my heart's secret vault!</p>
+        
+        <button onclick="lockApp()" class="absolute right-0 top-0 p-2 rounded-full text-pink-400 hover:text-pink-600 hover:bg-pink-100 transition-all" title="Lock App">
+          <i data-lucide="log-out" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- PROMINENT SPECIAL BUTTON TO ACCESS DEDICATED BIG I LOVE YOU PAGE -->
+      <div class="mb-5 px-1">
+        <button onclick="openDedicatedILoveYouPage()" class="glow-heart-btn w-full py-4 bg-gradient-to-r from-rose-500 via-pink-500 to-rose-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold rounded-2xl text-sm sm:text-base shadow-xl flex items-center justify-center gap-2.5 transition-transform active:scale-95">
+          <i data-lucide="sparkles" class="w-5 h-5 text-yellow-200 animate-spin"></i>
+          <span>Click Here For My Heart 💖</span>
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Decorative Divider -->
+      <div class="flex items-center justify-center space-x-2 text-pink-300 my-2">
+        <span class="h-px bg-pink-200 flex-1"></span>
+        <span class="text-pink-400 text-xs">✨ Standard Memories & Notes ✨</span>
+        <span class="h-px bg-pink-200 flex-1"></span>
+      </div>
+
+      <!-- Interactive Tabs Bar -->
+      <div class="flex rounded-xl bg-pink-100/90 p-1 my-3 border border-pink-200 overflow-x-auto gap-1">
+        <button onclick="switchTab('beauty')" id="tab-beauty" class="flex-1 min-w-[80px] py-2 text-xs font-bold rounded-lg text-pink-600 bg-white shadow-sm transition-all whitespace-nowrap">
+          ✨ Beauty
+        </button>
+        <button onclick="switchTab('reasons')" id="tab-reasons" class="flex-1 min-w-[80px] py-2 text-xs font-bold rounded-lg text-pink-400 hover:text-pink-600 transition-all whitespace-nowrap">
+          🌸 Reasons
+        </button>
+        <button onclick="switchTab('memories')" id="tab-memories" class="flex-1 min-w-[80px] py-2 text-xs font-bold rounded-lg text-pink-400 hover:text-pink-600 transition-all whitespace-nowrap">
+          📸 Memories
+        </button>
+        <button onclick="switchTab('coupon')" id="tab-coupon" class="flex-1 min-w-[80px] py-2 text-xs font-bold rounded-lg text-pink-400 hover:text-pink-600 transition-all whitespace-nowrap">
+          🎟️ Coupons
+        </button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="flex-1 overflow-y-auto pr-1 text-sm text-pink-800 space-y-3 min-h-[220px] max-h-[350px]">
+        
+        <!-- Tab 1: "Her Beauty" Love Letter Section -->
+        <div id="content-beauty" class="tab-content space-y-3">
+          <div class="bg-gradient-to-b from-rose-50/90 to-pink-50/90 border-2 border-pink-200 rounded-2xl p-4 shadow-inner relative text-left">
+            <div class="flex justify-between items-center border-b border-pink-200 pb-2 mb-3">
+              <span class="font-romantic text-2xl text-rose-600 font-bold">To My Dearest...</span>
+              <span class="text-xs bg-pink-200/60 text-pink-700 px-2.5 py-0.5 rounded-full font-bold">🌹 Grace</span>
+            </div>
+            
+            <div id="beautyTextContainer" class="font-serif-elegant leading-relaxed text-xs text-rose-950 space-y-3 italic">
+              <!-- Dynamic Content -->
+            </div>
+
+            <div class="mt-4 text-center">
+              <button onclick="triggerConfetti(); playCheerSound();" class="px-4 py-2 bg-gradient-to-r from-pink-400 to-rose-400 text-white font-bold rounded-full text-xs shadow-md inline-flex items-center gap-1.5 transition-transform active:scale-95">
+                <i data-lucide="heart" class="w-4 h-4 fill-current text-white"></i>
+                <span>Send Her A Kiss ✨</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Reasons I Like You -->
+        <div id="content-reasons" class="tab-content hidden space-y-2.5">
+          <div id="reasonsContainer" class="space-y-2 text-left">
+            <!-- Dynamic Content -->
+          </div>
+        </div>
+
+        <!-- Tab 3: Memories / Timeline -->
+        <div id="content-memories" class="tab-content hidden space-y-3">
+          <div id="memoriesContainer" class="space-y-3 text-left">
+            <!-- Dynamic Content -->
+          </div>
+        </div>
+
+        <!-- Tab 4: Interactive Cute Coupon -->
+        <div id="content-coupon" class="tab-content hidden text-center py-2">
+          <div class="border-2 border-dashed border-pink-400 rounded-2xl p-5 bg-gradient-to-br from-pink-50 to-rose-50 shadow-inner relative">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-pink-400 text-white font-bold text-[10px] px-3 py-0.5 rounded-full uppercase tracking-wider">OFFICIAL VOUCHER</span>
+            <p id="couponTitle" class="text-lg font-bold text-pink-700 mb-1 mt-1">Coffee & Sweets Date ☕🍰</p>
+            <p id="couponDesc" class="text-xs text-pink-600 mb-4">Redeemable anytime for one cozy date with all your favorite treats!</p>
+            
+            <button id="redeemBtn" onclick="redeemCoupon()" class="w-full py-2.5 bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white rounded-xl font-bold shadow-md hover:shadow-lg transition-all text-xs flex items-center justify-center gap-2">
+              <i data-lucide="gift" class="w-4 h-4"></i>
+              <span>Redeem Now 💕</span>
+            </button>
+            
+            <p id="redeemedMsg" class="hidden text-xs font-bold text-emerald-600 mt-2 flex items-center justify-center gap-1">
+              <i data-lucide="check-circle" class="w-4 h-4"></i> Redeemed! I can't wait!
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Love Note Quote -->
+      <div class="mt-4 pt-3 border-t border-pink-200 text-center">
+        <p id="hubCustomNote" class="text-xs italic text-pink-600">"You make every single day so much sweeter."</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- PAGE 3: DEDICATED BIG "I LOVE YOU" FULL PAGE (Completely hides tabs & beauty/memories) -->
+  <main id="dedicatedILoveYouScreen" class="w-full max-w-lg z-10 relative hidden mt-12 my-6">
+    <div class="glass-card rounded-3xl p-6 sm:p-8 text-center relative shadow-2xl overflow-hidden border-4 border-rose-300">
+      
+      <!-- Back Navigation Header -->
+      <div class="flex justify-between items-center mb-6">
+        <button onclick="backToMainHub()" class="flex items-center gap-1.5 text-xs font-bold text-pink-600 bg-white/90 hover:bg-white px-3.5 py-2 rounded-full shadow-sm border border-pink-200 transition-all active:scale-95">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Back to Main Menu 🌸</span>
+        </button>
+        <span class="text-xs font-bold text-rose-500 bg-rose-100/80 px-3 py-1 rounded-full border border-rose-200">
+          Special Note ✨
+        </span>
+      </div>
+
+      <div class="bg-gradient-to-b from-rose-100/90 via-pink-50/90 to-rose-50/90 border-2 border-rose-300 rounded-3xl p-6 sm:p-8 shadow-inner relative overflow-hidden">
+        
+        <!-- Corner Sparkle Icons -->
+        <div class="absolute top-3 left-3 text-pink-400 sparkle-icon text-xl">✨</div>
+        <div class="absolute top-3 right-3 text-pink-400 sparkle-icon text-xl">💖</div>
+        <div class="absolute bottom-3 left-3 text-pink-400 sparkle-icon text-xl">🌹</div>
+        <div class="absolute bottom-3 right-3 text-pink-400 sparkle-icon text-xl">✨</div>
+
+        <!-- Animated Center Heart -->
+        <div class="text-6xl my-2 animate-bounce inline-block">💖</div>
+
+        <!-- GIANT GLOWING NEON "I LOVE YOU" BANNER -->
+        <h1 id="bigILoveYouTitle" class="font-pacifico text-4xl sm:text-6xl text-rose-600 my-3 super-love-glow tracking-wider leading-tight">
+          I LOVE YOU!
+        </h1>
+        
+        <p id="bigILoveYouSub" class="font-romantic text-2xl sm:text-3xl text-pink-600 font-bold mb-5">
+          Forever & Always 💕
+        </p>
+
+        <!-- Rose & Hearts Divider -->
+        <div class="flex items-center justify-center space-x-2 text-rose-300 my-4">
+          <span class="h-px bg-rose-300 flex-1"></span>
+          <span class="text-rose-500 text-sm">🌹 ✨ 💖 ✨ 🌹</span>
+          <span class="h-px bg-rose-300 flex-1"></span>
+        </div>
+
+        <!-- Big Heartfelt Declaration Paragraph -->
+        <div id="bigILoveYouParagraph" class="font-serif-elegant leading-relaxed text-xs sm:text-sm text-rose-950 space-y-4 italic text-left bg-white/75 p-5 rounded-2xl border border-rose-200 shadow-sm">
+          <!-- Dynamic Content -->
+        </div>
+
+        <!-- Interactive "Send Extra Love" Button -->
+        <div class="mt-7">
+          <button onclick="sendLoveBack()" class="glow-heart-btn w-full py-4 bg-gradient-to-r from-rose-500 via-pink-500 to-rose-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold rounded-2xl text-sm sm:text-base shadow-xl flex items-center justify-center gap-2.5 transition-transform active:scale-95">
+            <i data-lucide="heart" class="w-6 h-6 fill-current text-white animate-bounce"></i>
+            <span id="sendLoveBtnText">Send Extra Love 💖</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- SETTINGS MODAL (Customization) -->
+  <div id="settingsModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-pink-900/30 backdrop-blur-md hidden transition-opacity duration-300">
+    <div class="glass-card max-w-md w-full rounded-3xl p-6 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-pink-700 text-lg flex items-center gap-2">
+          <i data-lucide="settings" class="w-5 h-5 text-pink-500"></i>
+          <span>Customize Passcode & Messages</span>
+        </h3>
+        <button onclick="closeSettingsModal()" class="text-pink-400 hover:text-pink-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-semibold text-pink-600 mb-1">Crush's Name / Greeting</label>
+          <input type="text" id="cfgName" class="w-full px-3 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80" placeholder="e.g. Cutie Pie">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-semibold text-pink-600 mb-1">Passcode (4 Digits)</label>
+            <input type="text" id="cfgCode" maxlength="4" class="w-full px-3 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80 font-mono tracking-widest" placeholder="1234">
+          </div>
+          <div>
+            <label class="block font-semibold text-pink-600 mb-1">Passcode Hint</label>
+            <input type="text" id="cfgHint" class="w-full px-3 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80" placeholder="e.g. Code: 1234">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-pink-600 mb-1">"I Love You" Page Heading</label>
+          <input type="text" id="cfgILoveYouTitle" class="w-full px-3 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80" placeholder="e.g. I LOVE YOU!">
+        </div>
+
+        <div>
+          <label class="block font-semibold text-pink-600 mb-1">"I Love You" Declaration Paragraph</label>
+          <textarea id="cfgILoveYouText" rows="4" class="w-full px-3 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80 text-xs" placeholder="Write your grand declaration of love..."></textarea>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-pink-600 mb-1">"Her Beauty" Paragraph</label>
+          <textarea id="cfgBeautyText" rows="3" class="w-full px-3 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80 text-xs" placeholder="Describe her beauty..."></textarea>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-pink-600 mb-1">Custom Footer Quote</label>
+          <input type="text" id="cfgNote" class="w-full px-3 py-2 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/80" placeholder="Short love note...">
+        </div>
+      </div>
+
+      <div class="mt-5 flex space-x-2">
+        <button onclick="saveSettings()" class="flex-1 py-2.5 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-xl shadow-md transition-all text-xs">
+          Save All Changes 💕
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Canvas for Heart Confetti Explosion -->
+  <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+  <script>
+    // --- Application State ---
+    let currentInput = "";
+    let sfxEnabled = true;
+    let bgmEnabled = false;
+
+    // Configuration Data
+    let config = {
+      passcode: "2112011",
+      name: "Cutie Pie 💕",
+      hint: "The day a sweet,pretty and the most beautiful fairy came on Earth",
+      note: "You make every single day so much sweeter and brighter!",
+      iloveyouTitle: "I LOVE YOU!",
+      iloveyouSub: "Forever & Always 💕",
+      iloveyouText: [
+        "Words will never truly be enough to express how deeply and unconditionally I care about you. From the moment you walked into my life, everything became warmer, brighter, and infinitely more beautiful.",
+        "You are my favorite thought in the morning, my comfort during tough days, and my happiest dream at night. Loving you is the easiest, most natural thing I have ever done. Thank you for simply being you."
+      ],
+      beautyLetter: [
+        "From the moment you enter a room, everything else seems to fade into the background. Your beauty isn't just something to behold; it's a feeling that lights up the world around you.",
+        "Your eyes carry a sparkle that rivals the brightest stars, holding a warmth that makes me feel instantly at home. You are breathtaking in every conceivable way."
+      ],
+      reasons: [
+        "Your smile literally lights up my entire day. ✨",
+        "You're impossibly kind and gentle to everyone around you.",
+        "You have the absolute sweetest laugh in the world.",
+        "Just being around you makes everything feel infinitely better."
+      ],
+      memories: [
+        { title: "First Time We Met 🌸", desc: "I still remember how nervous and happy I was." },
+        { title: "Late Night Talks 🌙", desc: "Talking for hours and realizing how special you are." },
+        { title: "Today 💕", desc: "Making this secret web page just to see you smile!" }
+      ]
+    };
+
+    // Load saved settings if present
+    const savedConfig = localStorage.getItem('love_note_config');
+    if (savedConfig) {
+      try {
+        config = { ...config, ...JSON.parse(savedConfig) };
+      } catch (e) {}
+    }
+
+    // --- Web Audio API Sound Synthesizer ---
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playBeep(freq = 520, duration = 0.08, type = 'sine') {
+      if (!sfxEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        
+        osc.type = type;
+        osc.frequency.value = freq;
+        
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playSuccessJingle() {
+      if (!sfxEnabled) return;
+      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      notes.forEach((freq, idx) => {
+        setTimeout(() => {
+          playBeep(freq, 0.2, 'triangle');
+        }, idx * 100);
+      });
+    }
+
+    function playCheerSound() {
+      if (!sfxEnabled) return;
+      const notes = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50];
+      notes.forEach((freq, idx) => {
+        setTimeout(() => {
+          playBeep(freq, 0.15, 'sine');
+        }, idx * 60);
+      });
+    }
+
+    function playErrorSound() {
+      if (!sfxEnabled) return;
+      playBeep(220, 0.15, 'sawtooth');
+      setTimeout(() => playBeep(180, 0.2, 'sawtooth'), 120);
+    }
+
+    let bgmInterval = null;
+    let bgmStep = 0;
+    const bgmMelody = [329.63, 392.00, 440.00, 523.25, 440.00, 392.00];
+
+    function toggleBGM() {
+  bgmEnabled = !bgmEnabled;
+  const btn = document.getElementById('bgmToggle');
+  const audio = document.getElementById('audio');
+  
+  if (bgmEnabled) {
+    btn.classList.add('bg-pink-500', 'text-white');
+    btn.classList.remove('bg-white/80', 'text-pink-500');
+    initAudio();
+    audio.play().catch(e => console.log("Audio play blocked:", e));
+  } else {
+    btn.classList.remove('bg-pink-500', 'text-white');
+    btn.classList.add('bg-white/80', 'text-pink-500');
+    audio.pause();
+    audio.currentTime = 0; // Resets the song back to the beginning
+  }
+}
+
+    function toggleSFX() {
+      sfxEnabled = !sfxEnabled;
+      const btn = document.getElementById('sfxToggle');
+      btn.innerHTML = sfxEnabled 
+        ? `<i data-lucide="volume-2" class="w-5 h-5"></i>` 
+        : `<i data-lucide="volume-x" class="w-5 h-5"></i>`;
+      lucide.createIcons();
+    }
+
+    // --- Passcode Logic ---
+    function pressPin(digit) {
+      if (currentInput.length < 7) {
+        currentInput += digit;
+        playBeep(400 + currentInput.length * 80, 0.08);
+        updateDots();
+
+        if (currentInput.length === 7) {
+          setTimeout(verifyPin, 180);
+        }
+      }
+    }
+
+    function backspacePin() {
+      if (currentInput.length > 0) {
+        currentInput = currentInput.slice(0, -1);
+        playBeep(300, 0.06);
+        updateDots();
+      }
+    }
+
+    function clearPin() {
+      if (currentInput.length > 0) {
+        currentInput = "";
+        playBeep(250, 0.08);
+        updateDots();
+      }
+    }
+
+    function updateDots() {
+      const dotsContainer = document.getElementById('pinDots');
+      const dots = dotsContainer.children;
+      for (let i = 0; i < 7; i++) {
+        if (i < currentInput.length) {
+          dots[i].className = "w-5 h-5 rounded-full bg-gradient-to-tr from-pink-400 to-rose-400 shadow-md flex items-center justify-center text-[10px] text-white font-bold dot-filled";
+          dots[i].innerHTML = "💕";
+        } else {
+          dots[i].className = "w-5 h-5 rounded-full border-2 border-pink-300 bg-white/60 transition-all";
+          dots[i].innerHTML = "";
+        }
+      }
+    }
+
+    function verifyPin() {
+      const card = document.getElementById('passcodeCard');
+      const feedback = document.getElementById('feedbackText');
+
+      if (currentInput === config.passcode) {
+        playSuccessJingle();
+        triggerConfetti();
+        setTimeout(() => {
+          showMainHub();
+          clearPin();
+        }, 350);
+      } else {
+        playErrorSound();
+        card.classList.add('shake-animation');
+        feedback.innerText = "Oopsie, wrong code! Try again! 💗";
+        feedback.style.opacity = "1";
+
+        setTimeout(() => {
+          card.classList.remove('shake-animation');
+        }, 400);
+
+        setTimeout(() => {
+          clearPin();
+          feedback.style.opacity = "0";
+        }, 1500);
+      }
+    }
+
+    function showHint() {
+      playBeep(600, 0.1);
+      const feedback = document.getElementById('feedbackText');
+      feedback.innerText = `💡 Hint: ${config.hint}`;
+      feedback.style.opacity = "1";
+      setTimeout(() => {
+        feedback.style.opacity = "0";
+      }, 3500);
+    }
+
+    // --- NAVIGATION FLOW & SCREEN TRANSITIONS ---
+    function showMainHub() {
+      document.getElementById('passcodeScreen').classList.add('hidden');
+      document.getElementById('dedicatedILoveYouScreen').classList.add('hidden');
+      
+      document.getElementById('hubGreeting').innerText = `Welcome, ${config.name}! 💕`;
+      document.getElementById('hubCustomNote').innerText = `"${config.note}"`;
+      
+      populateBeautyLetter();
+      populateReasons();
+      populateMemories();
+      switchTab('beauty');
+
+      document.getElementById('mainHubScreen').classList.remove('hidden');
+    }
+
+    function openDedicatedILoveYouPage() {
+      playCheerSound();
+      triggerConfetti();
+
+      document.getElementById('mainHubScreen').classList.add('hidden');
+      
+      // Populate dedicated page content
+      document.getElementById('bigILoveYouTitle').innerText = config.iloveyouTitle || "I LOVE YOU!";
+      document.getElementById('bigILoveYouSub').innerText = config.iloveyouSub || "Forever & Always 💕";
+      
+      const container = document.getElementById('bigILoveYouParagraph');
+      const paragraphs = Array.isArray(config.iloveyouText) 
+        ? config.iloveyouText 
+        : config.iloveyouText.split('\n\n').filter(p => p.trim() !== '');
+
+      container.innerHTML = paragraphs.map(p => `<p class="indent-2">${p}</p>`).join('');
+
+      document.getElementById('dedicatedILoveYouScreen').classList.remove('hidden');
+    }
+
+    function backToMainHub() {
+      playBeep(400, 0.08);
+      document.getElementById('dedicatedILoveYouScreen').classList.add('hidden');
+      document.getElementById('mainHubScreen').classList.remove('hidden');
+    }
+
+    function lockApp() {
+      playBeep(250, 0.1);
+      document.getElementById('mainHubScreen').classList.add('hidden');
+      document.getElementById('dedicatedILoveYouScreen').classList.add('hidden');
+      document.getElementById('passcodeScreen').classList.remove('hidden');
+    }
+
+    function populateBeautyLetter() {
+      const container = document.getElementById('beautyTextContainer');
+      const paragraphs = Array.isArray(config.beautyLetter) 
+        ? config.beautyLetter 
+        : config.beautyLetter.split('\n\n').filter(p => p.trim() !== '');
+
+      container.innerHTML = paragraphs.map(p => `<p class="indent-2">${p}</p>`).join('');
+    }
+
+    function populateReasons() {
+      const container = document.getElementById('reasonsContainer');
+      container.innerHTML = config.reasons.map((reason, index) => `
+        <div class="p-3 bg-white/80 rounded-xl border border-pink-200 shadow-sm flex items-start space-x-2.5">
+          <span class="text-pink-500 font-bold text-xs">${index + 1}.</span>
+          <p class="text-xs text-pink-700 font-medium">${reason}</p>
+        </div>
+      `).join('');
+    }
+
+    function populateMemories() {
+      const container = document.getElementById('memoriesContainer');
+      container.innerHTML = config.memories.map(mem => `
+        <div class="p-3 bg-white/80 rounded-xl border border-pink-200 shadow-sm">
+          <h4 class="font-bold text-xs text-pink-700">${mem.title}</h4>
+          <p class="text-xs text-pink-600 mt-0.5">${mem.desc}</p>
+        </div>
+      `).join('');
+    }
+
+    function switchTab(tabName) {
+      playBeep(480, 0.05);
+      ['beauty', 'reasons', 'memories', 'coupon'].forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        const content = document.getElementById(`content-${t}`);
+        if (t === tabName) {
+          btn.className = "flex-1 min-w-[80px] py-2 text-xs font-bold rounded-lg text-pink-600 bg-white shadow-sm transition-all whitespace-nowrap";
+          content.classList.remove('hidden');
+        } else {
+          btn.className = "flex-1 min-w-[80px] py-2 text-xs font-bold rounded-lg text-pink-400 hover:text-pink-600 transition-all whitespace-nowrap";
+          content.classList.add('hidden');
+        }
+      });
+    }
+
+    function sendLoveBack() {
+      playCheerSound();
+      triggerConfetti();
+      const btnText = document.getElementById('sendLoveBtnText');
+      btnText.innerText = "Love Sent! You're The Best! 💖✨";
+      setTimeout(() => {
+        btnText.innerText = "Send Extra Love 💖";
+      }, 3000);
+    }
+
+    function redeemCoupon() {
+      playCheerSound();
+      triggerConfetti();
+      document.getElementById('redeemBtn').classList.add('hidden');
+      document.getElementById('redeemedMsg').classList.remove('hidden');
+    }
+
+    // --- Settings Modal ---
+    function openSettingsModal() {
+      playBeep(450, 0.08);
+      document.getElementById('cfgName').value = config.name;
+      document.getElementById('cfgCode').value = config.passcode;
+      document.getElementById('cfgHint').value = config.hint;
+      document.getElementById('cfgNote').value = config.note;
+      document.getElementById('cfgILoveYouTitle').value = config.iloveyouTitle;
+
+      const loveStr = Array.isArray(config.iloveyouText) 
+        ? config.iloveyouText.join('\n\n') 
+        : config.iloveyouText;
+      document.getElementById('cfgILoveYouText').value = loveStr;
+      
+      const letterStr = Array.isArray(config.beautyLetter) 
+        ? config.beautyLetter.join('\n\n') 
+        : config.beautyLetter;
+      document.getElementById('cfgBeautyText').value = letterStr;
+
+      document.getElementById('settingsModal').classList.remove('hidden');
+    }
+
+    function closeSettingsModal() {
+      playBeep(300, 0.08);
+      document.getElementById('settingsModal').classList.add('hidden');
+    }
+
+    function saveSettings() {
+      const newCode = document.getElementById('cfgCode').value.trim();
+      if (newCode.length !== 7 || isNaN(newCode)) {
+        alert("Passcode must be a 4-digit number!");
+        return;
+      }
+
+      config.name = document.getElementById('cfgName').value.trim() || "Cutie Pie 💕";
+      config.passcode = newCode;
+      config.hint = document.getElementById('cfgHint').value.trim() || "Secret 4-digit code";
+      config.note = document.getElementById('cfgNote').value.trim() || "You make every day sweeter!";
+      config.iloveyouTitle = document.getElementById('cfgILoveYouTitle').value.trim() || "I LOVE YOU!";
+
+      const loveRaw = document.getElementById('cfgILoveYouText').value.trim();
+      if (loveRaw) {
+        config.iloveyouText = loveRaw.split('\n\n').filter(p => p.trim() !== '');
+      }
+
+      const beautyRaw = document.getElementById('cfgBeautyText').value.trim();
+      if (beautyRaw) {
+        config.beautyLetter = beautyRaw.split('\n\n').filter(p => p.trim() !== '');
+      }
+
+      localStorage.setItem('love_note_config', JSON.stringify(config));
+      
+      document.getElementById('passcodeHeading').innerText = `Hey ${config.name}! 💕`;
+      document.getElementById('hubGreeting').innerText = `Welcome, ${config.name}! 💕`;
+      
+      playSuccessJingle();
+      closeSettingsModal();
+    }
+
+    // --- Floating Background Elements ---
+    function createFloatingHearts() {
+      const container = document.getElementById('heartsContainer');
+      const heartSymbols = ['💗', '💖', '🌸', '✨', '💕', '🌷', '🌹', '🍃'];
+      
+      for (let i = 0; i < 24; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.animationDuration = `${4 + Math.random() * 6}s`;
+        heart.style.animationDelay = `${Math.random() * 5}s`;
+        heart.style.fontSize = `${14 + Math.random() * 20}px`;
+        container.appendChild(heart);
+      }
+    }
+
+    // --- Heart Confetti Cannon ---
+    function triggerConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const colors = ['#f472b6', '#fb7185', '#f43f5e', '#fbcfe8', '#ffe4e6', '#e11d48'];
+
+      for (let i = 0; i < 90; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 16,
+          vy: (Math.random() - 0.7) * 18,
+          size: Math.random() * 14 + 8,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 12,
+          opacity: 1
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+
+        particles.forEach(p => {
+          if (p.opacity > 0) {
+            active = true;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.35; // Gravity
+            p.opacity -= 0.014;
+            p.rotation += p.vRot;
+
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rotation * Math.PI) / 180);
+            ctx.globalAlpha = Math.max(0, p.opacity);
+            ctx.fillStyle = p.color;
+            
+            // Draw heart shape
+            ctx.beginPath();
+            const s = p.size / 2;
+            ctx.moveTo(0, 0);
+            ctx.bezierCurveTo(-s, -s, -s * 1.5, s / 2, 0, s * 1.5);
+            ctx.bezierCurveTo(s * 1.5, s / 2, s, -s, 0, 0);
+            ctx.fill();
+            
+            ctx.restore();
+          }
+        });
+
+        if (active) {
+          requestAnimationFrame(render);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+
+      render();
+    }
+
+    // Initialize UI on window load
+    window.onload = function() {
+      lucide.createIcons();
+      createFloatingHearts();
+      document.getElementById('passcodeHeading').innerText = `Hey ${config.name}! 💕`;
+    };
+  </script>
+</body>
+</html>
